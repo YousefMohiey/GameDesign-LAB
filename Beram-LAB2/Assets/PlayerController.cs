@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour {
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     private bool grounded;
+    private Animator anim; 
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
+        anim= GetComponent<Animator>();
         
     }
 
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour {
             }
 
 
+
         }
 
           if (Input.GetKey(R))
@@ -52,6 +56,13 @@ public class PlayerController : MonoBehaviour {
                  GetComponent<SpriteRenderer>().flipX = false;
             }
          }
+
+          anim.SetFloat("SpeedAnimation",Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+          anim.SetBool("GroundAnimation", grounded);
+        
+
+
+
     }
 
     
